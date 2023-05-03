@@ -1,0 +1,38 @@
+**Table 1: customers**
+
+| Column Name | Data Type | Description |
+| --- | --- | --- |
+| customer_id | SERIAL | Unique identifier for each customer |
+| name | VARCHAR(50) | The customer's name |
+| email | VARCHAR(100) | The customer's email address |
+| address | TEXT | The customer's address |
+
+**Table 2: orders**
+
+| Column Name | Data Type | Description |
+| --- | --- | --- |
+| order_id | SERIAL | Unique identifier for each order |
+| customer_id | INTEGER | The ID of the customer who placed the order |
+| order_date | DATE | The date the order was placed |
+| total_amount | DECIMAL(10,2) | The total amount of the order |
+| status | VARCHAR(20) | The status of the order (e.g. "pending", "shipped", "delivered") |
+
+
+version: 2
+models:
+  - name: analytics__orders
+    description: order statistics
+    columns:
+      - name: order_id
+        description: unique id for each orders created
+        meta:
+          dimension:
+            type: int
+          metrics:
+            orders_created:
+              type: count
+              lable: Total orders created
+
+Chema for tables: **Table 1: customers**| Column Name | Data Type | Description || --- | --- | --- || customer_id | SERIAL | Unique identifier for each customer || name | VARCHAR(50) | The customer's name || email | VARCHAR(100) | The customer's email address || address | TEXT | The customer's address |**Table 2: orders**| Column Name | Data Type | Description || --- | --- | --- || order_id | SERIAL | Unique identifier for each order || customer_id | INTEGER | The ID of the customer who placed the order || order_date | DATE | The date the order was placed || total_amount | DECIMAL(10,2) | The total amount of the order || status | VARCHAR(20) | The status of the order (e.g. "pending", "shipped", "delivered") |. As a senior analyst, given the above schemas and data, write a detailed and correct Postgres sql query to answer the analytical question:
+
+Configureation of dbt model: **Model 1** version: 2models: - name: analytics__orders description: order statistics columns: - name: order_id description: unique id for each orders created meta: dimension: type: int metrics: total_orders_created_per_date: type: count lable: Total orders created. Given this configuration, could I find an answer to my question:
